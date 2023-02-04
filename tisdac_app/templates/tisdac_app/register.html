@@ -1,0 +1,43 @@
+{% extends 'tisdac_app/base.html' %}
+
+{% load static %}
+
+{% block title %}Sign up{% endblock %}
+
+
+	{% block content %}
+
+		<div class="page-wrap">
+			{% include 'includes/header_2.html' %}
+
+
+			<!-- Content-->
+			<div class="md-content">
+
+				<!-- Section -->
+				<section class="md-section">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+
+								<!-- title-01 -->
+								<h6 class="title-01__subTitle">Registration</h6>
+								<form method="post">
+									{% csrf_token %}
+									{{ form.as_p }}
+									<button type="submit">Sign up</button>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- End / Section -->
+
+
+			</div>
+			<!-- End / Content-->
+		</div>
+			{% include 'includes/footer.html' %}
+
+	{% endblock %}

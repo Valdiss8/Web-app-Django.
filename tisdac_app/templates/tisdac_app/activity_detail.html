@@ -1,0 +1,148 @@
+{% extends 'tisdac_app/base.html' %}
+{% load static %}
+
+{% block title %} {{ event.title }} {% endblock %}
+
+
+	{% block content %}
+
+		<div class="page-wrap">
+			{% include 'includes/header_2.html' %}
+
+			<!-- Content-->
+			<div class="md-content">
+				<div class="consult-projectDetail">
+					
+
+					
+					<div class="container">
+						<div class="consult-projectDetail__main">
+							
+							<!-- social-01 -->
+							<!--<div class="social-01 social-01__style-02">
+								<nav class="social-01__navSocial"><a class="social-01__item" href="#"><i class="fa fa-facebook"></i></a><a class="social-01__item" href="#"><i class="fa fa-skype"></i></a><a class="social-01__item" href="#"><i class="fa fa-twitter"></i></a><a class="social-01__item" href="#"><i class="fa fa-instagram"></i></a>
+								</nav>
+							</div>--><!-- End / social-01 -->
+							
+							<div class="row">
+								<div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+									<div class="consult-projectDetail__content">
+										<div class="row">
+											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
+												<h1>{{ department.name }}</h1>
+												<p class="text">{{ department.summary }}</p>
+
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-6 ">
+												<div class="image-full">
+													{% if department.image %} <img src="{{ department.image.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+													{% endif %}
+													</div>
+											</div>
+											<div class="col-lg-6 ">
+												<div class="image-full">
+													{% if department.image2 %} <img src="{{ department.image2.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+
+													{% endif %}
+												</div>
+
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
+												<p class="text">{{ department.description|linebreaksbr }}</p>
+											</div>
+										</div>
+
+
+											<!-- Upcoming Events -->
+										<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1" >
+											<h3  >Upcoming Events</h3>
+										</div><!-- End / title-01 -->
+
+										<! -- events -->
+										{% for event in events %}
+										<div class="grid-sizer"></div>
+										<div class="grid-item marketing">
+											<div class="grid-item__inner">
+												<div class="grid-item__content-wrapper">
+
+
+													<!-- Post 2-->
+											<div class="post-02">
+												<div class="post-02__media"><a href="{{ event.get_url }}">
+													{% if event.image %} <img src="{{ event.image.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+													{% elif event.image2 %} <img src="{{ event.image2.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+													{% else %} <img src="{{ event.department.image.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+													{% endif %}
+												</a></div>
+												<div class="post-02__body">
+													<h2 class="post-02__title"><a href="{{ event.get_url }}">{{ event.title }}</a></h2>
+
+													<div class="post-02__department">{{ department.name }} <b>{{ event.date }}</b></div>
+
+												</div>
+											</div>
+													<!-- End / Post2 -->
+													</div>
+
+												</div>
+											</div>
+										</div>
+										{% endfor %}
+								<!-- End / Upcoming events -->
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Related Posts-->
+
+
+
+				<!-- Section -->
+				<section class="md-section">
+					<div class="container">
+						
+						<!-- title-01 -->
+						<div class="title-01">
+							<h2 class="title-01__title">Other Activities</h2>
+						</div><!-- End / title-01 -->
+
+
+						
+						<!-- carousel__element owl-carousel -->
+						<div class="carousel__element owl-carousel" data-options='{"loop":false,"dots":false,"nav":false,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
+
+							{% for dp in departments %}
+							<!-- post-02 -->
+							<div class="post-02">
+								<div class="post-02__media"><a href="{{ dp.get_url }}">
+									{% if dp.image %} <img src="{{ dp.image.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+									{% endif %}</a>
+								</div>
+								<div class="post-02__body">
+									<h2 class="post-02__title"><a href="{{ dp.get_url }}"> {{ dp.name }}</a></h2>
+									<div class="post-02__department"></div>
+								</div>
+							</div><!-- End / post-02 -->
+							{% endfor %}
+
+							
+						</div><!-- End / carousel__element owl-carousel -->
+						
+					</div>
+				</section>
+				<!-- End / Section -->
+				
+			</div>
+			<!-- End / Content-->
+			
+			{% include 'includes/footer.html' %}
+</div>
+{% endblock %}
+

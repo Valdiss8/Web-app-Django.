@@ -1,0 +1,48 @@
+{% load static %}
+<!-- header -->
+			<header class="header header__style-02">
+				<div class="container">
+					<div class="header__logo" ><a href="{% url 'tisdac-main' %}"><img src="{% static 'tisdac_app/img/logo.png' %}" alt=""/></a></div>
+					<div class="header__toogleGroup">
+						<section class="widget-text__widget widget">
+										<div class="widget-text__content">
+											<ul>
+												{% if request.user.is_authenticated %}
+												<li><b>{{ user.username }}</b><a href="{% url 'logout' %}"><b>Log out</b></a></li>
+												{% else %}
+												<li><a href="{% url 'register' %}"><b>Sign up</b></a><a href="{% url 'login' %}"><b>Log in</b></a></li>
+												{% endif %}
+
+											</ul>
+										</div>
+						</section><!-- End / widget-text__widget -->
+
+
+					</div>
+
+					<!-- consult-nav -->
+					<nav class="consult-nav">
+
+						<!-- consult-menu -->
+						<ul class="consult-menu">
+							<li><a href="{% url 'tisdac-main' %}">Home</a>
+							</li>
+							<li><a href="{% url 'tisdac-about' %}">about</a>
+							</li>
+							<li ><a href="{% url 'tisdac-activities' %}">Activities</a>
+							</li>
+							<li><a href="{% url 'tisdac-services' %}">services</a>
+							</li>
+							<li><a href="{% url 'tisdac-upcoming_events' %}">upcoming</a>
+							</li>
+							<li><a href="{% url 'tisdac-news' %}">news</a>
+							</li>
+							<li><a href="{% url 'tisdac-contact' %}">contact</a>
+							</li>
+						</ul><!-- consult-menu -->
+
+						<div class="navbar-toggle"><span></span><span></span><span></span></div>
+					</nav><!-- End / consult-nav -->
+
+				</div>
+			</header><!-- End / header -->

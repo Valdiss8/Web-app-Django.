@@ -1,0 +1,14 @@
+Hello {{ event.department.leader }}.
+
+You have a new visitor to  "{{ event.title }}",  which will take place at  {{ event.place }}  on  {{ event.date }}.
+
+Visitor name: {{ visitor.name }}
+Visitor phone: {{ visitor.phone }}
+Visitor email: {{ visitor.email }}
+
+All visitors to "{{event.title }}":
+{% for v in visitors %}
+{{ v.name }} - {{ v.email }} - {{ v.phone }}
+{% endfor %}
+
+Tallinn International SDA Church.

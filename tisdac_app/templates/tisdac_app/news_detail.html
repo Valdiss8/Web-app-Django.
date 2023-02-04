@@ -1,0 +1,156 @@
+{% extends 'tisdac_app/base.html' %}
+{% load static %}
+
+{% block title %} {{ event.title }} {% endblock %}
+
+{% block css_additional %}
+
+{% endblock %}
+
+	{% block content %}
+		<div class="page-wrap">
+			{% include 'includes/header_2.html' %}
+
+			
+			<!-- Content-->
+			<div class="md-content">
+				<div class="consult-postDetail">
+					<!-- carousel__element owl-carousel -->
+					<div class="carousel__element owl-carousel consult-projectDetail__slider" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"autoplay":true,"animateOut":"fadeOut","margin":0}'>
+						{% if news.image %}
+						<div>
+							<img src="{{ news.image.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+						</div>
+						{% endif %}
+						{% if news.image2 %}
+						<div>
+							 <img src="{{ news.image2.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+						</div>
+						{% endif %}
+						{% if news.image3 %}
+						<div>
+							 <img src="{{ news.image3.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+						</div>
+						{% endif %}
+					</div><!-- End / carousel__element owl-carousel -->
+					<div class="consult-postDetail"></div>
+					<div class="container">
+						<div class="consult-postDetail__main">
+							
+							<div class="row">
+								<div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+									<div class="consult-postDetail__content">
+										<div class="row">
+											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
+												<h1>{{ news.title }}</h1>
+												<ul class="consult-postDetail__meta">
+													<li><i class="fa fa-user" aria-hidden="true"></i>{{ news.department }}</li>
+													<!--<li><i class="fa fa-tags" aria-hidden="true"></i>Services    </li>
+													<li><i class="fa fa-comments-o" aria-hidden="true"></i>Comment</li>-->
+													<li><i class="fa fa-calendar-o" aria-hidden="true"></i>{{ news.date.date }}</li>
+												</ul>
+												<p class="text">{{ news.summary }}</p>
+											</div>
+										</div>
+										{% if news.video_youtube_link %}
+
+												<!-- video -->
+												<div class="video" data-init="video">
+													<iframe width="560" height="315" src="https://www.youtube.com/embed/{{news.video_youtube_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+												</div>
+											{% endif %}
+
+
+										<div class="row">
+											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
+												<p class="text">{{ news.description|linebreaksbr }}</p>
+											</div>
+										</div>
+										<div class="row">
+											{% if news.image2 %}
+											<div class="col-lg-6 ">
+												<div class="image-full">
+													 <img src="{{ news.image2.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+												</div>
+											</div>
+											{% endif %}
+											{% if news.image3 %}
+											<div class="col-lg-6 ">
+												<div class="image-full">
+													 <img src="{{ news.image3.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+													</div>
+											</div>
+											{% endif %}
+											{% if news.image %}
+											<div class="image-full">
+											 	<img src="{{ news.image.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+											</div>
+										{% endif %}
+
+										</div>
+
+										<!--<blockquote>
+											<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+										</blockquote>
+										<div class="row">
+											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
+												<p class="text">Suspendisse ac elit vitae est lacinia interdum eu sit amet mauris. Phasellus aliquam nisi sit amet libero mattis ornare. In varius nunc vel suscipit rhoncus. Nunc hendrerit nisl nec orci eleifend accumsan. Mauris nulla mi, egestas ac maximus ac, ultricies non tellus. Vestibulum varius purus nunc. Cr</p>
+											</div>
+										</div>-->
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- Related Posts-->
+				
+				<!-- Section -->
+				<section class="md-section">
+					<div class="container">
+						
+						<!-- title-01 -->
+						<div class="title-01">
+							<h2 class="title-01__title">Latest news</h2>
+						</div><!-- End / title-01 -->
+						
+						
+						<!-- carousel__element owl-carousel -->
+						<div class="carousel__element owl-carousel" data-options='{"loop":false,"dots":false,"nav":false,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
+							
+							<!--  -->
+							{% for n in news_set %}
+
+							<div>
+								<div class="post-01__media"><a href="{% url 'news-detail' n.id %}">
+
+									{% if n.image %} <img src="{{ n.image.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+									{% elif n.image2 %} <img src="{{ n.image2.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+									{% else %} <img src="{{ n.image3.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+									{% endif %}
+								</a></div>
+								<div>
+									<ul class="post-01__categories">
+										<li><a href="#">{{ n.department }}</a></li>
+									</ul>
+									<h2 class="post-01__title"><a href="{% url 'news-detail' n.id %}">{{ n.title }}</a></h2>
+									<div class="post-01__time">{{ n.date.date }}</div>
+									<div class="post-01__note">{{ n.summary }}</div>
+								</div>
+							</div><!-- End /  -->
+							{% endfor %}
+							
+						</div><!-- End / carousel__element owl-carousel -->
+						
+					</div>
+				</section>
+				<!-- End / Section -->
+				
+			</div>
+			<!-- End / Content-->
+			
+			{% include 'includes/footer.html' %}
+</div>
+{% endblock %}

@@ -1,0 +1,213 @@
+{% extends 'tisdac_app/base.html' %}
+{% load static %}
+
+{% block title %} {{ event.title }} {% endblock %}
+
+{% block css_additional %}
+
+{% endblock %}
+
+	{% block content %}
+
+		<div class="page-wrap">
+			{% include 'includes/header_2.html' %}
+
+			<!-- Content-->
+			<div class="md-content">
+				<div class="consult-projectDetail">
+					
+					<!-- carousel__element owl-carousel -->
+					<div class="carousel__element owl-carousel consult-projectDetail__slider" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"autoplay":true,"animateOut":"fadeOut","margin":0}'>
+						{% if event.image %}
+						<div>
+							 <img src="{{ event.image.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+						</div>
+						{% endif %}
+						{% if event.image2 %}
+						<div>
+							<img src="{{ event.image2.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+
+						</div>
+						{% endif %}
+						{% if event.image3 %}
+						<div>
+							<img src="{{ event.image3.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+						</div>
+						{% endif %}
+					</div><!-- End / carousel__element owl-carousel -->
+
+
+
+					<div class="container">
+						<div class="consult-projectDetail__main">
+
+							<div class="row">
+								<div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+									<div class="consult-projectDetail__content">
+										<div class="row">
+											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
+												<h1>{{ event.title }}</h1>
+												<p class="text">{{ event.summary }}</p>
+												<div class="row row-eq-height" style="margin-bottom:30px;">
+													<div class="col-lg-6 ">
+														
+														<!-- infobox -->
+														<div class="infobox">
+															<h2 class="infobox__title"><a href="#"></a></h2>
+															<div class="infobox__description">{{ event.contact }}</div>
+														</div><!-- End / infobox -->
+														
+													</div>
+													<div class="col-md-6 ">
+														
+														<!-- infobox -->
+														<div class="infobox">
+															<h2 class="infobox__title"><a href="#">date</a></h2>
+															<div class="infobox__description">{{ event.date }}</div>
+														</div><!-- End / infobox -->
+														
+													</div>
+													<div class="col-md-6 ">
+														
+														<!-- infobox -->
+														<div class="infobox">
+															<h2 class="infobox__title"><a href="{{ event.department.get_url }}">Team</a></h2>
+															<div class="infobox__description">
+													<p>{{ event.department }}</p>
+												</div>
+														</div><!-- End / infobox -->
+														
+													</div>
+													<div class="col-md-6 ">
+														
+														<!-- infobox -->
+														<div class="infobox">
+															<h2 class="infobox__title"><a href="{% url 'tisdac-contact' %}">Place</a></h2>
+															<div class="infobox__description">{{ event.place }}</div>
+														</div><!-- End / infobox -->
+
+
+														
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-lg-6 ">
+												<div class="image-full">
+													{% if event.image %} <img src="{{ event.image.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+													{% else %} <img src="{{ event.department.image.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+													{% endif %}
+
+												</div>
+											</div>
+											<div class="col-lg-6 ">
+												<div class="image-full">
+													{% if event.image2 %} <img src="{{ event.image2.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+													{% endif %}
+												</div>
+											</div>
+
+										</div>
+
+										</div>
+										<div class="row">
+											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
+												<p class="text">{{ event.description|linebreaksbr }}</p>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-6 ">
+												<div class="image-full">
+													{% if event.image3 %} <img src="{{ event.image3.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+													{% endif %}
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Related Posts-->
+
+				<!-- Book a visit form -->
+				<div class="container">
+					<div class="form-01 consult-form js-consult-form__content" id="form01">
+
+							<h2 class="form-01__title">Book a visit for free</h2>
+							<form class="form-01__form" action="{{ event.slug }}" method="post">
+								{% csrf_token %}
+								{% for field in form %}
+								<div class="form__item form__item--03">
+									{{ field.label_tag }}
+            						{{ field.errors }}
+            						{{ field }}
+								</div>
+								{% endfor %}
+								<!--<div class="form__item form__item--03">
+									<input type="text" name="name" placeholder="Your name"/>
+								</div>
+								<div class="form__item form__item--03">
+									<input type="text" name="phone" placeholder="Your phone"/>
+								</div>
+								<div class="form__item form__item--03">
+									<input type="email" name="email" placeholder="Your Email"/>
+								</div>-->
+
+								<button type="submit" class="btn btn-primary btn-w180" >Book a visit</button>
+							</form>
+					</div>
+				</div>
+
+						<!-- End / Book a visit form -->
+
+
+				<!-- Section -->
+				<section class="md-section">
+					<div class="container">
+						
+						<!-- title-01 -->
+						<div class="title-01">
+							<h2 class="title-01__title">Other Events</h2>
+						</div><!-- End / title-01 -->
+						
+						
+						<!-- carousel__element owl-carousel -->
+						<div class="carousel__element owl-carousel" data-options='{"loop":false,"dots":false,"nav":false,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
+
+							{% for ev in events %}
+							<!-- post-02 -->
+							<div class="post-02">
+
+								<div class="post-02__media"><a href="{{ ev.get_url }}">
+													{% if ev.image %} <img src="{{ ev.image.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+													{% elif ev.image2 %} <img src="{{ ev.image2.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+													{% else %} <img src="{{ ev.department.image.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+													{% endif %}
+												</a></div>
+								<div class="post-02__body">
+									<h2 class="post-02__title"><a href="{{ ev.get_url }}"> {{ ev.title }}</a></h2>
+									<div class="post-02__department">{{ ev.department }}</div>
+									<div> {{ ev.date }}</div>
+								</div>
+							</div><!-- End / post-02 -->
+							{% endfor %}
+
+							
+						</div><!-- End / carousel__element owl-carousel -->
+						
+
+				<!-- End / Section -->
+				</div>
+				</section>
+			</div>
+			<!-- End / Content-->
+
+			{% include 'includes/footer.html' %}
+</div>
+{% endblock %}
+

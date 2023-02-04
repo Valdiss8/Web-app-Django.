@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %} {%endblock %}</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- Fonts-->
+		<link rel="stylesheet" type="text/css" href="{% static 'tisdac_app/fonts/fontawesome/font-awesome.min.css'%}">
+		<link rel="stylesheet" type="text/css" href="{% static 'tisdac_app/fonts/themify-icons/themify-icons.css'%}">
+		<!-- Vendors-->
+		<link rel="stylesheet" type="text/css" href="{% static 'tisdac_app/vendors/jquery/jquery.min.js'%}">
+		<link rel="stylesheet" type="text/css" href="{% static 'tisdac_app/vendors/bootstrap4/bootstrap-grid.min.css'%}">
+		<link rel="stylesheet" type="text/css" href="{% static 'tisdac_app/vendors/magnific-popup/magnific-popup.min.css'%}">
+		<link rel="stylesheet" type="text/css" href="{% static 'tisdac_app/vendors/owl.carousel/owl.carousel.css'%}">
+
+		{% block css_additional %} {% endblock %}
+
+		<!-- App & fonts-->
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i&amp;amp;subset=latin-ext">
+		<link rel="stylesheet" type="text/css" href="{% static 'tisdac_app/css/main.css' %}"><!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		{% block content %} {% endblock %}
+
+		<!-- Vendors-->
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/jquery/jquery.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/imagesloaded/imagesloaded.pkgd.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/isotope-layout/isotope.pkgd.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/jquery.countdown/jquery.countdown.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/jquery.countTo/jquery.countTo.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/jquery.countUp/jquery.countup.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/jquery.matchHeight/jquery.matchHeight.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/jquery.mb.ytplayer/jquery.mb.YTPlayer.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/masonry-layout/masonry.pkgd.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/owl.carousel/owl.carousel.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/jquery.waypoints/jquery.waypoints.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/menu/menu.min.js' %}"></script>
+		<script type="text/javascript" src="{% static 'tisdac_app/vendors/smoothscroll/SmoothScroll.min.js' %}"></script>
+
+		<!-- App-->
+		<script type="text/javascript" src="{% static 'tisdac_app/js/main.js' %}"></script>
+
+	</body>
+</html>

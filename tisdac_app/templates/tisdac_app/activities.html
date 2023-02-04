@@ -1,0 +1,84 @@
+{% extends 'tisdac_app/base.html' %}
+{% load static %}
+{% load my_filters %}
+
+{% block title %}Our Activities {% endblock %}
+
+
+	{% block content %}
+
+		<div class="page-wrap">
+			{% include 'includes/header_2.html' %}
+
+
+			
+			<!-- Content-->
+			<div class="md-content">
+				
+				<!-- page-title -->
+				<div class="page-title">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-8 offset-0 offset-sm-0 offset-md-0 offset-lg-2 ">
+								<h2 class="page-title__title">Our Activities</h2>
+								
+							</div>
+						</div>
+					</div>
+				</div><!-- End / page-title -->
+				
+				
+				<!-- Section -->
+				<section class="md-section">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 offset-0 offset-sm-0 offset-md-0 offset-lg-1 ">
+								
+								<!-- title-01 -->
+								<div class="title-01 title-01__style-04">
+									<h2 class="title-01__title">Welcome to the Tallinn International Seventh-day Adventist Church!</h2>
+									<div>We are a warm, culturally-diverse church family, with over ten countries represented in our congregation.</div>
+								</div><!-- End / title-01 -->
+								
+							</div>
+						</div>
+
+						<!-- post-03 -->
+						{% for department in departments %}
+						{% if department|index_even:departments %}
+
+						<div class="post-03">
+							<div class="post-03__media"><a href="{{ department.get_url }}">
+								{% if department.image %} <img src="{{ department.image.url }}" style="max-height:395px; object-fit: cover;" alt="{{ department.name }}"/>
+								{% endif %}</a></div>
+							<div class="post-03__body">
+								<h6 class="post-03__subTitle">department</h6>
+								<h2 class="post-03__title"><a href="{{ department.get_url }}">{{ department.name }}</a></h2>
+								<div class="post-03__description">{{ department.summary }}</div><a class="post-03__link" href="{{ department.get_url }}">view all about <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+							</div>
+						</div><!-- End / post-03 -->
+						{% endif %}
+						{% if department|index_even:departments is False %}
+						<!-- post-03 -->
+						<div class="post-03 post-03__reverse">
+							<div class="post-03__media"><a href="{{ department.get_url }}">
+								{% if department.image %} <img src="{{ department.image.url }}" style="max-height:395px; object-fit: cover;" alt="{{ department.name }}"/>
+								{% endif %}</a></div>
+							<div class="post-03__body">
+								<h6 class="post-03__subTitle">department </h6>
+								<h2 class="post-03__title"><a href="{{ department.get_url }}">{{ department.name }}</a></h2>
+								<div class="post-03__description">{{ department.summary }}</div><a class="post-03__link" href="#">view all about <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+							</div>
+						</div><!-- End / post-03 -->
+						{% endif %}
+						{% endfor %}
+					</div>
+				</section>
+				<!-- End / Section -->
+				
+			</div>
+			<!-- End / Content-->
+	</div>
+{% include 'includes/footer.html' %}
+
+{% endblock %}

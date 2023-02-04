@@ -1,0 +1,239 @@
+{% extends 'tisdac_app/base.html' %}
+
+{% load static %}
+{% block title %}Home{%endblock %}
+
+{% block css_additional %}
+		<!--<link rel="stylesheet" type="text/css" href="{% static 'tisdac_app/vendors/jquery/jquery.min.js'%}">-->
+		<!--<link rel="stylesheet" type="text/css" href="{% static 'tisdac_app/vendors/bootstrap4/bootstrap-grid.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'tisdac_app/vendors/bootstrap4/bootstrap-grid.min.css' %}">-->
+
+{% endblock %}
+
+{% block content %}
+		<div class="page-wrap">
+			{% include 'includes/header.html' %}
+
+			
+			<!-- Content-->
+			<div class="md-content">
+				
+				<!-- slider -->
+				<div class="slider">
+					
+					<!-- carousel__element owl-carousel -->
+					<div class="carousel__element owl-carousel" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"margin":0, "autoplay": true, "autoplayTimeout": 3000}'>
+						{% for department in departments %}
+						<div class="slider__item" style="background-image: url('{{ department.image.url }}');
+						background-repeat: no-repeat;
+						background-size: cover;
+						background-position: center;">
+							<div class="md-tb">
+								<div class="md-tb__cell">
+									<div class="slider__content">
+										<div class="container">
+											<a href="{{ department.get_url }}"><h2>{{ department.name}}</h2></a>
+											<p>{{ department.summary }}</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div><!-- End / carousel__element owl-carousel -->
+					
+				</div><!-- End / slider -->
+				
+				<!-- Service-->
+				
+				<!-- Section -->
+				<section class="md-section" style="background-color:#f7f7f7;padding:0;">
+					<div class="container">
+						<div class="textbox-group">
+							<div class="row">
+
+								{% for service in services|slice:"3" %}
+								<div class="col-md-4 col-lg-4 ">
+									
+									<!-- textbox -->
+									<div class="textbox">
+										<div class="textbox__image"><a href="{{ service.get_url }}">
+											{% if service.image %} <img src="{{ service.image.url }}" style="height:300px; object-fit: cover;" alt="{{ service.name }}"/>
+											{% elif event.image2 %} <img src="{{ service.image2.url }}" style="height:300px; object-fit: cover;" alt="{{ service.name }}"/>
+											{% endif %}
+											</a></div>
+										<div class="textbox__body">
+											<h2 class="textbox__title"><a href="{{ service.get_url }}">{{ service.name }}</a></h2>
+											<div class="textbox__description">{{ service.summary }}</div>
+										</div>
+									</div><!-- End / textbox -->
+									
+								</div>
+								{% endfor %}
+
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- End / Section -->
+
+
+
+
+
+				<!-- Upcoming Events-->
+
+				<!-- Section -->
+				<section class="md-section" style="padding-bottom:0;">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 col-lg-8 offset-0 offset-sm-0 offset-md-2 offset-lg-2 ">
+
+								<!-- title-01 -->
+								<div class="title-01">
+									<h2 ><a href="{% url 'tisdac-upcoming_events' %}">Upcoming Events</a></h2>
+								</div><!-- End / title-01 -->
+
+							</div>
+						</div>
+					</div>
+					<div class="consult-project">
+						<div class="row">
+							{% for event in events %}
+							<div class="col-sm-6 col-md-6 col-lg-6 col-xl-3 " style="padding-left: 5px; padding-right: 5px;">
+
+								<!-- post-02 -->
+								<div class="post-02 post-02__style-02 js-post-effect">
+									<div class="post-02__media"><a href="{{ event.get_url }}">
+										{% if event.image %} <img src="{{ event.image.url }}" alt="{{ event.title }}"
+																  style="object-fit:cover;
+            															width:450px;
+            															height:460px;
+            															border: solid 1px #CCC"/>
+										{% elif event.image2 %} <img src="{{ event.image2.url }}" alt="{{ event.title }}"
+																	 style="object-fit:cover;
+            																width:450px;
+            																height:460px;
+            																border: solid 1px #CCC"/>
+										{% else %} <img src="{{ event.department.image.url }}" alt="{{ event.title }}"
+														style="object-fit:cover;
+            													width:450px;
+            													height:460px;
+            													border: solid 1px #CCC"/>
+										{% endif %}
+									</a></div>
+									<div class="post-02__body">
+										<h2 class="post-02__title"><a href="{{ event.get_url }}">{{ event.title }}</a></h2>
+										<div class="post-02__department">{{ event.department }}</div>
+										<div class="post-02__department">{{ event.date }}</div>
+										<div class="post-02__content">
+											<div class="post-02__description">{{ event.summary }}</div><a class="post-02__link" href="{{ event.get_url }}">Book a visit</a>
+										</div>
+									</div>
+								</div><!-- End / post-02 -->
+
+							</div>
+							{% endfor %}
+
+						</div>
+					</div>
+				</section>
+				<!-- End / Section -->
+				
+
+				
+				<!-- Resources Section -->
+				<section class="md-section">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 col-lg-8 offset-0 offset-sm-0 offset-md-2 offset-lg-2 ">
+								
+								<!-- title-01 -->
+								<div class="title-01">
+									<h2 >Resources</h2>
+								</div><!-- End / title-01 -->
+								
+							</div>
+						</div>
+						
+						<!-- carousel__element owl-carousel -->
+						<div class="carousel__element owl-carousel" data-options='{"loop":true,"dots":false,"nav":true,"margin":30,"responsive":{"0":{"items":2},"768":{"items":3},"992":{"items":5}}}'>
+							
+							<!--Resources  -->
+							{% for resource in resources %}
+							<div>
+								<div class="brand-01__image"><a href="{{ resource.webpage }}"><img src="{{ resource.logo.url }}" alt=""/></a></div>
+								<div>{{ resource.name }}</div>
+							</div>
+							{% endfor %}
+							<!-- End /  -->
+							
+						</div><!-- End / carousel__element owl-carousel -->
+						
+					</div>
+				</section>
+				<!-- End / Section -->
+				
+				<!-- Latest News -->
+				
+				<!-- Section -->
+				<section class="md-section consult-background">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-8 col-lg-8 offset-0 offset-sm-0 offset-md-2 offset-lg-2 ">
+								
+								<!-- title-01 -->
+								<div class="title-01">
+									<h2 ><a href="{% url 'tisdac-news' %}">Latest News</a></h2>
+								</div><!-- End / title-01 -->
+								
+							</div>
+						</div>
+						
+						<!-- carousel__element owl-carousel -->
+						<div class="carousel__element owl-carousel" data-options='{"loop":false,"dots":false,"nav":true,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
+							
+							<!--  -->
+							{% for n in news %}
+							<div>
+								<div class="post-01__media"><a href="{% url 'news-detail' n.id %}">
+									{% if n.video_youtube_link %}
+																<!-- video -->
+									<div class="video" data-init="video">
+										<iframe width="560" height="315" src="https://www.youtube.com/embed/{{n.video_youtube_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+									</div><!-- End / video -->
+									{% elif n.image %} <img src="{{ n.image.url }}" style="max-height:225px; object-fit: cover;" alt="{{ n.title }}"/>
+									{% elif n.image2 %} <img src="{{ n.image2.url }}" style="max-height:225px; object-fit: cover;" alt="{{ n.title }}"/>
+									{% else %} <img src="{{ n.department.image.url }}" style="max-height:225px; object-fit: cover;" alt="{{ n.title }}"/>
+
+									{% endif %}
+								</a></div>
+								<div>
+									<ul class="post-01__categories">
+										<li><a href="{{ n.department.get_url }}">{{ n.department }}</a></li>
+									</ul>
+									<h2 class="post-01__title"><a href="{% url 'news-detail' n.id %}">{{ n.title }}</a></h2>
+									<div class="post-01__time">{{ n.date.date }}</div>
+									<div class="post-01__note"><!-- by Miki Trump--></div>
+								</div>
+							</div><!-- End /  -->
+							{% endfor %}
+							
+							
+
+							
+						</div><!-- End / carousel__element owl-carousel -->
+						
+					</div>
+				</section>
+				<!-- End / Section -->
+				
+			</div>
+			<!-- End / Content-->
+			
+			{% include 'includes/footer.html' %}
+		</div>
+
+
+			
+{% endblock %}

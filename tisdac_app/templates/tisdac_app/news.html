@@ -1,0 +1,98 @@
+{% extends 'tisdac_app/base.html' %}
+{% load static %}
+{% load my_filters %}
+
+{% block title %}Our Activities {% endblock %}
+
+
+	{% block content %}
+		<div class="page-wrap">
+			{% include 'includes/header_2.html' %}
+
+			
+			<!-- Content-->
+			<div class="md-content">
+				
+				<!-- page-title -->
+				<div class="page-title">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-8 offset-0 offset-sm-0 offset-md-0 offset-lg-2 ">
+								<h2 class="page-title__title">News</h2>
+							</div>
+						</div>
+					</div>
+				</div><!-- End / page-title -->
+				
+				<!-- Section -->
+				<section class="md-section">
+					<div class="container">
+						<div class="grid-css grid-css--masonry" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
+							<div class="filter">
+								<ul class="filter__list">
+									<li><a href="#" data-filter="*">All</a></li>
+									{% for department in departments %}
+									<li><a href="#" data-filter=".{{ department.slug }}">{{ department }}</a></li>
+									{% endfor %}
+
+								</ul>
+							</div>
+							<div class="grid__inner">
+								<! -- events -->
+								{% for n in news %}
+
+								<div class="grid-sizer"></div>
+								<div class="grid-item {{ n.department.slug }}">
+									<div class="grid-item__inner">
+										<div class="grid-item__content-wrapper">
+											<div class="post-02">
+
+												<div class="post-02__media"><a href="{% url 'news-detail' n.id %}">
+
+													{% if n.image %} <img src="{{ n.image.url }}" style="height:225px; object-fit: cover;" alt="{{ n.title }}"/>
+													{% elif n.image2 %} <img src="{{ n.image2.url }}" style="height:225px; object-fit: cover;" alt="{{ n.title }}"/>
+													{% else %} <img src="{{ n.department.image.url }}" style="height:225px; object-fit: cover;" alt="{{ n.title }}"/>
+
+													{% endif %}
+												</a></div>
+												<div class="post-02__body">
+													<h2 class="post-02__title"><a href="{% url 'news-detail' n.id %}">{{ n.title }}</a></h2>
+													<div class="post-02__department">{{ n.department }}</div>
+													<div> {{ n.date.date }}</div>
+												</div>
+											</div><!-- End / post-02 -->
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- End / Section -->
+
+								<!-- pagination -->
+								<div class="pagination">
+   									 <span class="pagination__item">
+   									     {% if page_obj.has_previous %}
+   									         <a class="pagination__item" href="?page=1">first page </a>
+   									         <a class="pagination__item" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+   									     {% endif %}
+
+   									     <span class="pagination__item active">
+   									         {{ page_obj.number }}
+   									     </span>
+
+   									     {% if page_obj.has_next %}
+   									         <a class="pagination__item" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+   									         <a class="pagination__item" href="?page={{ page_obj.paginator.num_pages }}">last page</a>
+   									     {% endif %}
+   									 </span>
+								</div>
+
+			</div>
+			<!-- End / Content-->
+		</div>
+			{% include 'includes/footer.html' %}
+
+{% endblock %}

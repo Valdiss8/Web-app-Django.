@@ -1,0 +1,47 @@
+{% extends 'tisdac_app/base.html' %}
+
+{% load static %}
+
+{% block title %}About {% endblock %}
+
+
+	{% block content %}
+
+		<div class="page-wrap">
+			{% include 'includes/header_2.html' %}
+
+			
+			<!-- Content-->
+			<div class="md-content">
+				
+				<!-- Section -->
+				<section class="md-section">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+								
+								<!-- title-01 -->
+								<h6 class="title-01__subTitle">Who are Seventh-day Adventists?</h6>
+								{% for article in articles %}
+								<div class="title-01 title-01__style-04">
+
+									<h5 class="title-01__title">{{ article.title}}</h5>
+									{% if article.image %}
+									<div><img src="{{ article.image.url }}" alt=""/></div>
+									{% endif %}
+									<div align= left style='font-size:20px;' class="articles"> {{ article.article|linebreaksbr }}</div>
+								</div><!-- End / title-01 -->
+								{% endfor %}
+								
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- End / Section -->
+				
+			</div>
+			<!-- End / Content-->
+		</div>
+			{% include 'includes/footer.html' %}
+			
+	{% endblock %}

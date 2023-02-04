@@ -1,0 +1,81 @@
+
+
+{% extends 'tisdac_app/base.html' %}
+{% load static %}
+
+{% block title %}Services {% endblock %}
+
+
+
+
+	{% block content %}
+
+		<div class="page-wrap">
+			{% include 'includes/header_2.html' %}
+
+
+			
+			<!-- Content-->
+			<div class="md-content">
+				
+				<!-- page-title -->
+				<div class="page-title">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-8 offset-0 offset-sm-0 offset-md-0 offset-lg-2 ">
+								<h2 class="page-title__title">Services</h2>
+
+							</div>
+						</div>
+					</div>
+				</div><!-- End / page-title -->
+				
+				
+				<!-- Section -->
+				<section class="md-section">
+					<div class="container">
+						<div class="grid-css grid-css--masonry" data-col-lg="3" data-col-md="2" data-col-sm="2" data-col-xs="1" data-gap="30">
+
+							<div class="grid__inner">
+								<! -- services -->
+								{% for service in services %}
+								<div class="grid-sizer"></div>
+								<div class="grid-item marketing">
+									<div class="grid-item__inner">
+										<div class="grid-item__content-wrapper">
+
+
+											<div class="post-02">
+
+												<div class="post-02__media"><a href="{{ service.get_url }}">
+													{% if service.image %} <img src="{{ service.image.url }}" style="height:225px; object-fit: cover;" alt="{{ service.name }}"/>
+													{% elif event.image2 %} <img src="{{ service.image2.url }}" style="height:225px; object-fit: cover;" alt="{{ service.name }}"/>
+													{% endif %}
+												</a></div>
+												<div class="post-02__body">
+													<h2 class="post-02__title"><a href="{{ service.get_url }}">{{ service.name }}</a></h2>
+													<div class="post-02__department">{{ service.summary }}</div>
+												</div>
+											</div><!-- End / post-02 -->
+
+
+											
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+
+							</div>
+						</div>
+
+					</div>
+				</section>
+				<!-- End / Section -->
+				
+			</div>
+			<!-- End / Content-->
+			
+		</div>
+		{% include 'includes/footer.html' %}
+
+{% endblock %}

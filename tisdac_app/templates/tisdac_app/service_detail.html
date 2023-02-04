@@ -1,0 +1,153 @@
+{% extends 'tisdac_app/base.html' %}
+{% load static %}
+
+{% block title %} {{ service.name }} {% endblock %}
+
+
+	{% block content %}
+
+		<div class="page-wrap">
+			{% include 'includes/header_2.html' %}
+
+			<!-- Content-->
+			<div class="md-content">
+				<div class="consult-projectDetail">
+					
+					<!-- carousel__element owl-carousel -->
+					<div class="carousel__element owl-carousel consult-projectDetail__slider" data-options='{"items":1,"loop":true,"dots":false,"nav":false,"autoplay":true,"animateOut":"fadeOut","margin":0}'>
+						{% if service.image %}
+						<div>
+							 <img src="{{ service.image.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+
+						</div>
+						{% endif %}
+						{% if service.image2 %}
+						<div>
+							<img src="{{ service.image2.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+
+						</div>
+						{% endif %}
+						{% if service.image3 %}
+						<div>
+							 <img src="{{ service.image3.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+
+						</div>
+						{% endif %}
+					</div><!-- End / carousel__element owl-carousel -->
+
+
+
+					<div class="container">
+						<div class="consult-projectDetail__main">
+
+							<div class="row">
+								<div class="col-lg-10 col-xl-8 offset-0 offset-sm-0 offset-md-0 offset-lg-1 offset-xl-2 ">
+									<div class="consult-projectDetail__content">
+										<div class="row">
+											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
+												<h1>{{ service.name }}</h1>
+												<p class="text">{{ service.summary }}</p>
+												<div class="row row-eq-height" style="margin-bottom:30px;">
+													<div class="col-lg-6 ">
+														<!-- infobox -->
+														<div class="infobox">
+															<h2 class="infobox__title"><a href="{% url 'tisdac-contact' %}">Contact</a></h2>
+															<div class="infobox__description">You are welcome to contact us, and we will discuss available time.</div>
+														</div><!-- End / infobox -->
+													</div>
+
+													<div class="col-md-6 ">
+														
+														<!-- infobox -->
+														<div class="infobox">
+															<h2 class="infobox__title"><a href="{% url 'tisdac-contact' %}">Place</a></h2>
+															<div class="infobox__description">Tallinn, Mere puiestee 3</div>
+														</div><!-- End / infobox -->
+														
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											{% if service.image %}
+											<div class="col-lg-6 ">
+
+												<div class="image-full">
+													 <img src="{{ service.image.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+
+												</div>
+
+											</div>
+											{% endif %}
+											{% if service.image2 %}
+											<div class="col-lg-6 ">
+												<div class="image-full">
+													<img src="{{ service.image2.url }}" style="max-height:425px; object-fit: cover;" alt=""/>
+
+
+
+												</div>
+											</div>
+											{% endif %}
+										</div>
+										<div class="row">
+											<div class="col-xl-11 offset-0 offset-sm-0 offset-md-0 offset-lg-0 offset-xl-1 ">
+												<p class="text">{{ service.description|linebreaksbr }}</p>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Related Posts-->
+
+				<!-- Section -->
+				<section class="md-section">
+					<div class="container">
+						
+						<!-- title-01 -->
+						<div class="title-01">
+							<h2 class="title-01__title">Other Services</h2>
+						</div><!-- End / title-01 -->
+
+
+						<!-- carousel__element owl-carousel -->
+						<div class="carousel__element owl-carousel" data-options='{"loop":false,"dots":false,"nav":false,"margin":30,"responsive":{"0":{"items":1},"768":{"items":2},"992":{"items":3}}}'>
+
+							{% for s in services %}
+							<!-- post-02 -->
+							<div class="post-02">
+								<div class="post-02__media"><a href="{{ s.get_url }}">
+													{% if s.image %} <img src="{{ s.image.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+													{% elif s.image2 %} <img src="{{ s.image2.url }}" style="max-height:225px; object-fit: cover;" alt=""/>
+													{% endif %}
+												</a></div>
+								<div class="post-02__body">
+									<h2 class="post-02__title"><a href="{{ s.get_url }}"> {{ s.name }}</a></h2>
+									<div class="post-02__department">{{ s.summary }}</div>
+								</div>
+							</div><!-- End / post-02 -->
+							{% endfor %}
+
+							
+						</div><!-- End / carousel__element owl-carousel -->
+						
+
+				<!-- End / Section -->
+				</div>
+				</section>
+			</div>
+			<!-- End / Content-->
+
+			{% include 'includes/footer.html' %}
+</div>
+<script>
+    $(function () {
+      $("#datetimepicker").datetimepicker();
+    });
+  </script>
+{% endblock %}
+
