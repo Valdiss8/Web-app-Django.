@@ -304,6 +304,8 @@ $('.navbar-toggle').each(function(index, el) {
     $(el).on('click', function(event) {
         event.preventDefault();
         $(el).toggleClass('open');
+
+        $(el).menuClass('active');
     });
 
 $(document).on('click', function(event) {
