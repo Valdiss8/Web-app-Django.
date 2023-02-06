@@ -304,7 +304,7 @@ $('.navbar-toggle').each(function(index, el) {
     $(el).on('click', function(event) {
         event.preventDefault();
         $(el).toggleClass('open');
-
+/* Выдает ошибку, но решает проблему с меню*/
         $(el).menuClass('active');
     });
 
